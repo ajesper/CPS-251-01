@@ -1,4 +1,4 @@
-package com.ebookfrenzy.addnamesavedata
+package com.ebookfrenzy.addnamesavedata2
 
 import org.junit.Test
 

@@ -1,4 +1,4 @@
-package com.ebookfrenzy.addnamesavedata
+package com.ebookfrenzy.addnamesavedata2
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

@@ -1,4 +1,4 @@
-package com.ebookfrenzy.addnamesavedata.ui.main
+package com.ebookfrenzy.addnamesavedata2.ui.main
 
 import android.annotation.SuppressLint
 import androidx.lifecycle.ViewModelProvider
@@ -7,8 +7,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.Observer
-import com.ebookfrenzy.addnamesavedata.databinding.FragmentMainBinding
+import androidx.databinding.DataBindingUtil
+import com.ebookfrenzy.addnamesavedata2.R
+import com.ebookfrenzy.addnamesavedata2.databinding.FragmentMainBinding
+import com.ebookfrenzy.addnamesavedata2.BR.myViewModel
 
 @Suppress("DEPRECATION")
 class MainFragment : Fragment()
@@ -19,8 +21,7 @@ class MainFragment : Fragment()
     }
 
     private lateinit var viewModel: MainViewModel
-    private var _binding: FragmentMainBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding: FragmentMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
@@ -31,13 +32,10 @@ class MainFragment : Fragment()
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?): View
     {
-        _binding = FragmentMainBinding.inflate(inflater, container, false)
+        binding = DataBindingUtil.inflate(
+            inflater, R.layout.fragment_main, container, false)
+        binding.lifecycleOwner = this
         return binding.root
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 
     @SuppressLint("SetTextI18n")
@@ -46,18 +44,6 @@ class MainFragment : Fragment()
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
 
-        val resultObserver = Observer<String> {
-                result -> binding.names.text = result
-        }
-
-        viewModel.getNames().observe(viewLifecycleOwner, resultObserver)
-
-        binding.addNameButton.setOnClickListener {
-            if (binding.enterName.text.isNotEmpty()) {
-                viewModel.addName(binding.enterName.text.toString())
-            } else {
-                binding.names.text = "No names to display"
-            }
-        }
+        binding.setVariable(myViewModel, viewModel)
     }
 }

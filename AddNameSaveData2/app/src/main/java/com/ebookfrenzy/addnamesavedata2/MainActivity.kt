@@ -1,8 +1,8 @@
-package com.ebookfrenzy.addnamesavedata
+package com.ebookfrenzy.addnamesavedata2
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.ebookfrenzy.addnamesavedata.ui.main.MainFragment
+import com.ebookfrenzy.addnamesavedata2.ui.main.MainFragment
 
 class MainActivity : AppCompatActivity() {
 
