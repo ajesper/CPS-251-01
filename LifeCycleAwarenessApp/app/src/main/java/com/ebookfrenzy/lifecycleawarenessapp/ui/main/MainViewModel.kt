@@ -1,21 +1,21 @@
 package com.ebookfrenzy.lifecycleawarenessapp.ui.main
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.MutableLiveData
 
 class MainViewModel : ViewModel() {
-    private var text = "Vengeance will be mine"
-    private var result = "Hi"
-    fun displays(value: String) {
-        this.text = value
-        result = if (result != "") {
-            result + "\n" + text
-        } else {
-            text
+
+    companion object {
+        private var message: MutableLiveData<String> = MutableLiveData()
+
+        private var mess = ""
+        fun addMsg(msg: String){
+            mess += msg
+            message.value = mess
         }
     }
 
-    fun results(): String
-    {
-        return result
+    fun getMsg(): MutableLiveData<String> {
+        return message
     }
 }

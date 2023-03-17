@@ -1,47 +1,48 @@
 package com.ebookfrenzy.lifecycleawarenessapp
 
 import android.util.Log
-import androidx.lifecycle.DefaultLifecycleObserver
-import androidx.lifecycle.LifecycleOwner
-import java.util.*
-import com.ebookfrenzy.lifecycleawarenessapp.ui.main.MainFragment
+import androidx.lifecycle.*
+import com.ebookfrenzy.lifecycleawarenessapp.ui.main.MainViewModel
+import java.time.LocalTime
 
 class DemoObserver: DefaultLifecycleObserver {
-    private val _logTag = "DemoObserver"
-    private lateinit var myFragment: MainFragment
-    var text = "One first"
+    private val tag = "DemoObserver"
+
+    private var mv = MainViewModel
+
+    private fun getDateTime():String {
+        return LocalTime.now().toString()
+
+    }
 
     override fun onResume(owner: LifecycleOwner) {
-        super.onResume(owner)
-        myFragment = MainFragment.newInstance()
-        val call = Calendar.getInstance()
-        myFragment.content = "I am here"
-        Log.i(_logTag, ("onResume was fired on " + "%02d".format(call.get(Calendar.HOUR)) + ":" + "%02d".format(call.get(Calendar.MINUTE)) + ":" + "%02d".format(call.get(Calendar.SECOND)) + "." + "%03d".format(call.get(Calendar.MILLISECOND)) + "**********"))
+        Log.i(tag,"onResume")
+        mv.addMsg("onResume was fired on " + getDateTime() + "\n**********\n")
     }
-    override fun onPause(owner: LifecycleOwner){
-        super.onPause(owner)
-        val call = Calendar.getInstance()
-        Log.i(_logTag, ("onPause was fired on " + "%02d".format(call.get(Calendar.HOUR)) + ":" + "%02d".format(call.get(Calendar.MINUTE)) + ":" + "%02d".format(call.get(Calendar.SECOND)) + "." + "%03d".format(call.get(Calendar.MILLISECOND)) + "**********"))
-    }
-    override fun onCreate(owner: LifecycleOwner) {
-        super.onCreate(owner)
-        val call = Calendar.getInstance()
 
-        Log.i(_logTag, ("onCreate was fired on " + "%02d".format(call.get(Calendar.HOUR)) + ":" + "%02d".format(call.get(Calendar.MINUTE)) + ":" + "%02d".format(call.get(Calendar.SECOND)) + "." + "%03d".format(call.get(Calendar.MILLISECOND))))
+    override fun onPause(owner: LifecycleOwner) {
+        Log.i(tag, "onPause")
+        mv.addMsg("onPause was fired on " + getDateTime() + "\n**********\n")
     }
+
+    override fun onCreate(owner: LifecycleOwner) {
+        Log.i(tag, "onCreate\n")
+        mv.addMsg("onCreate was fired on " + getDateTime() + "\n")
+    }
+
     override fun onStart(owner: LifecycleOwner) {
-        super.onStart(owner)
-        val call = Calendar.getInstance()
-        Log.i(_logTag, ("onStart was fired on " + "%02d".format(call.get(Calendar.HOUR)) + ":" + "%02d".format(call.get(Calendar.MINUTE)) + ":" + "%02d".format(call.get(Calendar.SECOND)) + "." + "%03d".format(call.get(Calendar.MILLISECOND))))
+        Log.i(tag, "onStart")
+        mv.addMsg("onStart was fired on " + getDateTime() + "\n")
+
     }
+
     override fun onStop(owner: LifecycleOwner) {
-        super.onStop(owner)
-        val call = Calendar.getInstance()
-        Log.i(_logTag, ("onStop was fired on " + "%02d".format(call.get(Calendar.HOUR)) + ":" + "%02d".format(call.get(Calendar.MINUTE)) + ":" + "%02d".format(call.get(Calendar.SECOND)) + "." + "%03d".format(call.get(Calendar.MILLISECOND))))
+        Log.i(tag, "onStop")
+        mv.addMsg("onStop was fired on " + getDateTime() + "\n")
     }
+
     override fun onDestroy(owner: LifecycleOwner) {
-        super.onDestroy(owner)
-        val call = Calendar.getInstance()
-        Log.i(_logTag, ("onDestroy was fired on " + "%02d".format(call.get(Calendar.HOUR)) + ":" + "%02d".format(call.get(Calendar.MINUTE)) + ":" + "%02d".format(call.get(Calendar.SECOND)) + "." + "%03d".format(call.get(Calendar.MILLISECOND)) + "**********"))
+        Log.i(tag, "onDestroy")
+        mv.addMsg("onDestroy was fired on " + getDateTime() + "\n**********\n")
     }
 }
