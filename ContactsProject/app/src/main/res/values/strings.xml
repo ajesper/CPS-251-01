@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Contacts Project</string>
+    <string name="not_assigned">Not Assigned</string>
+    <string name="add">Add</string>
+    <string name="find">Find</string>
+    <string name="delete">Delete</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="contact_name">Contact Name</string>
+    <string name="contact_id">Contact ID</string>
+    <string name="enter_phone">Enter Phone</string>
+    <string name="enter_name">Enter Name</string>
+    <string name="desc">DESC</string>
+    <string name="asc">ASC</string>
+    <string name="no">no</string>
+    <string name="nos">no</string>
+</resources>
